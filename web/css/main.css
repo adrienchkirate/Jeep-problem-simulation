@@ -8,3 +8,12 @@
 {
     cursor: pointer;
 }
+button
+{
+    background:none;
+    border:none;
+}
+button:hover, button:active, button:focus
+{
+    outline:none;
+}
