@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" type="text/css" href="vendor/components/normalize.css/normalize.css">
   <link rel="stylesheet" type="text/css" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" type="text/css" href="web/css/main.css"> -->
+   <link rel="stylesheet" type="text/css" href="web/css/main.css">
 
 </head>
 
@@ -19,87 +19,62 @@
     <div class="jumbotron">
       <h1>Projet Jeep</h1>
       <br /> <br />
-      <div class="row" style="text-align: center;">
+        <div class="row" style="text-align: center;">
 
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="usr">Nombre de bidon :</label>
-          <input type="text" class="form-control" id="nmbrBidon">
-          <label for="pwd">volume réservoir :</label>
-          <input type="text" class="form-control" id="volReservoir">
-          <label for="usr">Consommation :</label>
-          <input type="text" class="form-control" id="consMoteur">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="usr">Nombre de bidon :</label>
+            <input type="text" class="form-control" id="nmbrBidon">
+            <label for="pwd">volume réservoir :</label>
+            <input type="text" class="form-control" id="volReservoir">
+            <label for="usr">Consommation :</label>
+            <input type="text" class="form-control" id="consMoteur">
 
-          <br />
-          <button id="calc">Calculer la distance max</button>
+            <br />
+            <button id="calc">Calculer la distance max</button>
+          </div>
         </div>
-      </div>
-      <div class="col-md-3" id="result">
 
-      </div>
-      </div>
+        <div class="col-md-3" id="result">
+
+        </div>
+
+        </div>
+
+        <div class="row" style="text-align: center;">
+
+            <div class="col-md-6 col-sm-6 col-sm-push-3 bloc" style="text-align: left;">
+                <p>
+
+                    <span style="float: right;">Unité d'essence disponible : <span class="label label-info fuelUnit">2</span></span>
+
+                    Point Actuel <span class="label label-default currentPoint">A</span> <br />
+                    Distance <span class="label label-default distance">0</span>  <br/>
+                    Bidon au point actuel <span class="label label-default currentBidon">0</span>
+
+                </p>
+
+                <br />
+
+                <p>
+                    <span class="label label-success forward"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></span>
+                    <span class="label label-success backward"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>
+                    <span class="label label-success take">Prendre bidon</span>
+                    <span class="label label-success drop">Poser un bidon</span>
+
+                </p>
+
+            </div>
+
+        </div>
+
+
     </div>
   </div>
 
   <script src="vendor/components/jquery/jquery.min.js"></script>
   <script src="vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
-
-  <script>
-
-      // $(document).on('click', '#calc', function() {
-      //
-      //   var n = parseFloat($('#nmbrBidon').val()), v = parseFloat($('#volReservoir').val()), c = parseFloat($('#consMoteur').val()), max = 0;
-      //
-      //   max = Math.round((200 * n * v)/c);
-      //
-      //
-      //   $("#result").empty();
-      //   $("#result").append('<p> La distance maximale pouvant être parcouru est de '+ max +' km </p>');
-      // });
-
-      var bT         = 2,
-          bR         = 2,
-          tB         = bT + 1,
-          d          = 0,
-          arrayPoint = [],
-          alphabet   = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-      for (var i = 0; i < 26; i++)
-    	{
-         arrayPoint[i] = {
-          	name: alphabet[i],
-            bidon: false,
-            nmb: 0
-          };
-    	}
-
-      while (tB != 0) {
-
-          if(d != 0)
-          {
-
-          }
-          else
-          {
-            d = d + 1;
-            tB = tB - 1;
-            drop = false;
-
-            if(drop)
-            {
-              arrayPoint[d-1].bidon = true;
-              arrayPoint[d-1].nmb = 1;
-            }
-            else
-            {
-              d = d + 1;
-
-            }
-          }
-
-      }
-
-  </script>
+  <script src="web/js/event.js"></script>
 
 </body>
 </html>
