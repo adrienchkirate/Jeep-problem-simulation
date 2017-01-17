@@ -1,0 +1,10 @@
+.bloc
+{
+    padding: 40px;
+    border-radius: 3px;
+    border: 1px #1d2021 solid;
+}
+.label-success
+{
+    cursor: pointer;
+}
