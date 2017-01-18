@@ -2,7 +2,13 @@
 {
     padding: 40px;
     border-radius: 3px;
-    border: 1px #1d2021 solid;
+    border: 1px grey solid;
+    background: white;
+}
+.ligne
+{
+    font-size: 1.5em;
+
 }
 .label-success
 {
