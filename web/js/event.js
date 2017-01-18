@@ -1,11 +1,13 @@
-var arrayPoint   = ['Réserve', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+// Tableau qui contient tous les points
+var arrayPoint   = ['Réserve', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-for (var i = 0; i < 26; i++)
+// On crée un tableau d'objet contenant les informations sur les points
+for (var i = 0; i < arrayPoint.length; i++)
 {
     if(arrayPoint[i] == 'Réserve') {
         arrayPoint[i] = {
             name: arrayPoint[i],
-            bidon: parseInt($('.reserve').val())
+            bidon: parseInt($('.reserve').val()) // Pour le point réserve on lui attribue le nombre de bidon rentré par l'utilisateur
         };
     }
     else
@@ -17,6 +19,7 @@ for (var i = 0; i < 26; i++)
     }
 }
 
+// Fonction qui permet de raffraichir la position de la jeep sur le visuel et le nombre de bidon de chaque point
 function refreshLine()
 {
     var distance = parseInt($('.distance').text());
@@ -27,7 +30,7 @@ function refreshLine()
 
     for(var i=0; i < arrayPoint.length; i++)
     {
-
+        // On repére le point où la jeep se trouve et on affiche une pastille pour en informer l'utilisateur
         if(arrayPoint[i].name == arrayPoint[distance].name)
         {
             $('.ligne').append('<span class="label label-info" style="float: right">' + arrayPoint[i].bidon + '</span> <span class="label label-default">' + arrayPoint[i].name + '</span>  <span class="label label-danger">Vous êtes ici</span> <br />');
@@ -39,85 +42,90 @@ function refreshLine()
     }
 }
 
-
+// On l'utilise une première fois pour avoir l'affichage de base
 refreshLine();
 
+// Evenement correspondant à avancer
 $(document).on('click', '.forward', function() {
 
     var distance = parseInt($('.distance').text()), reservoir = $('.reservoir').text();
 
-    if(reservoir != 'Vide')
+    if(reservoir != 'Vide') // ne fonction que si le réservoir n'est pas vide
     {
-        $('.currentBidon').text(arrayPoint[distance + 1].bidon);
-        $('.reservoir').text('Vide');
+        $('.currentBidon').text(arrayPoint[distance + 1].bidon); // On affiche les caractéristiques du point d'après
         $('.currentPoint').text(arrayPoint[distance + 1].name);
-        $('.distance').text(distance + 1);
+        $('.reservoir').text('Vide');
+        $('.distance').text(distance + 1); // On rajoute une unité de distance
     }
 
-    refreshLine();
+    refreshLine(); // On actualise la position visuel de la jeep
 });
 
+// Evenement correspondant à reculer
 $(document).on('click', '.backward', function() {
 
     var distance = parseInt($('.distance').text()), reservoir = $('.reservoir').text();
 
-    if(reservoir != 'Vide' && arrayPoint[distance].name != 'Réserve')
+    if(reservoir != 'Vide' && arrayPoint[distance].name != 'Réserve') // Même condition que .forward + si on est pas déjà à la réserve
     {
-        $('.currentBidon').text(arrayPoint[distance - 1].bidon);
+        $('.currentBidon').text(arrayPoint[distance - 1].bidon); // On affiche les caractéristiques du point d'avant
         $('.reservoir').text('Vide');
         $('.currentPoint').text(arrayPoint[distance - 1].name);
-        $('.distance').text(distance - 1);
+        $('.distance').text(distance - 1); // On enlève une unité de distance
     }
 
-    refreshLine();
+    refreshLine(); // On actualise la position visuel de la jeep
 });
 
+// Evenement correspondant à prendre un bidon
 $(document).on('click', '.take', function() {
 
     var distance = parseInt($('.distance').text()), reservoir = $('.reservoir').text(), bidonT = parseInt($('.bidonT').text()) ;
 
-    if(arrayPoint[distance].bidon != 0 && bidonT < parseInt($('.capacity').val()))
+    if(arrayPoint[distance].bidon != 0 && bidonT < parseInt($('.capacity').val())) // Que si il y a un bidon au point + il y a encore de la place dans le coffre
     {
-        $('.bidonT').text(bidonT + 1);
-        arrayPoint[distance].bidon -= 1;
-        $('.currentBidon').text(arrayPoint[distance].bidon);
+        $('.bidonT').text(bidonT + 1); // On rajoute un bidon au coffre
+        arrayPoint[distance].bidon -= 1; // On enlève un bidon au point correspondant
+        $('.currentBidon').text(arrayPoint[distance].bidon); // Et on actualise
     }
 
-    refreshLine();
+    refreshLine(); // On actualise la position visuel de la jeep
 });
 
-
+// Evenement correspondant à poser un bidon
 $(document).on('click', '.drop', function() {
 
     var bidonT = parseInt($('.bidonT').text()), distance = parseInt($('.distance').text());
 
-    if(bidonT != 0)
+    if(bidonT != 0) // Si on a bien un bidon dans le coffre
     {
-        arrayPoint[distance].bidon += 1;
-        $('.bidonT').text(bidonT - 1);
-        $('.currentBidon').text(arrayPoint[distance].bidon);
+        arrayPoint[distance].bidon += 1; // On ajoute un bidon au point actuel
+        $('.bidonT').text(bidonT - 1); // On enlève le bidon du coffre
+        $('.currentBidon').text(arrayPoint[distance].bidon); // On affiche le nouveau nombre de bidon
     }
 
-    refreshLine();
+    refreshLine(); // On actualise la position visuel de la jeep
 });
 
+// Evenement correspondant à utliser un bidon
 $(document).on('click', '.use', function() {
 
     var reservoir = $('.reservoir').text(), bidonT = parseInt($('.bidonT').text());
 
-    if(bidonT != 0 && reservoir == 'Vide')
+    if(bidonT != 0 && reservoir == 'Vide') // Si on a un bidon + le réservoir est vide
     {
-        $('.bidonT').text(bidonT - 1);
-        $('.reservoir').text('Plein');
+        $('.bidonT').text(bidonT - 1); // On enlève le bidon du coffre
+        $('.reservoir').text('Plein'); // On affecte la valeur 'Plein' au réservoir
     }
 
-    refreshLine();
+    refreshLine(); // On actualise la position visuel de la jeep
 });
 
+// Evenement correspondant à changer le nombre de bidon à la réserve
 $(document).on('input', '.reserve', function() {
 
-    $('.distance').text(0);
-    arrayPoint[0].bidon = $(this).val();
+    $('.distance').text(0); // On remet toutes les valeurs à 0
+    arrayPoint[0].bidon = $(this).val(); // On assigne au point 'Réserve' le nouveau nombre de bidon
     $('.currentPoint').text(arrayPoint[0].name);
     $('.currentBidon').text(arrayPoint[0].bidon);
     $('.bidonT').text(0);
@@ -126,9 +134,10 @@ $(document).on('input', '.reserve', function() {
     refreshLine();
 });
 
+// Evenement correspondant à changer le nombre de bidon transportable
 $(document).on('input', '.capacity', function() {
 
-    $('.distance').text(0);
+    $('.distance').text(0); // On remet toutes les valeurs à 0
     arrayPoint[0].bidon = $('.reserve').val();
     $('.currentPoint').text(arrayPoint[0].name);
     $('.currentBidon').text(arrayPoint[0].bidon);
