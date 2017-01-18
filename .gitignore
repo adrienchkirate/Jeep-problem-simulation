@@ -2,9 +2,6 @@
 .DS_Store
 Desktop.ini
 
-# IDE Project folder
-.idea
-
 # Thumbnail cache files
 ._*
 Thumbs.db
