@@ -5,7 +5,7 @@ for (var i = 0; i < 26; i++)
     if(arrayPoint[i] == 'Réserve') {
         arrayPoint[i] = {
             name: arrayPoint[i],
-            bidon: parseInt($('.reserve').text())
+            bidon: parseInt($('.reserve').val())
         };
     }
     else
@@ -76,7 +76,7 @@ $(document).on('click', '.take', function() {
 
     var distance = parseInt($('.distance').text()), reservoir = $('.reservoir').text(), bidonT = parseInt($('.bidonT').text()) ;
 
-    if(arrayPoint[distance].bidon != 0 && bidonT < parseInt($('.capacity').text()))
+    if(arrayPoint[distance].bidon != 0 && bidonT < parseInt($('.capacity').val()))
     {
         $('.bidonT').text(bidonT + 1);
         arrayPoint[distance].bidon -= 1;
@@ -110,6 +110,30 @@ $(document).on('click', '.use', function() {
         $('.bidonT').text(bidonT - 1);
         $('.reservoir').text('Plein');
     }
+
+    refreshLine();
+});
+
+$(document).on('input', '.reserve', function() {
+
+    $('.distance').text(0);
+    arrayPoint[0].bidon = $(this).val();
+    $('.currentPoint').text(arrayPoint[0].name);
+    $('.currentBidon').text(arrayPoint[0].bidon);
+    $('.bidonT').text(0);
+    $('.reservoir').text('Plein');
+
+    refreshLine();
+});
+
+$(document).on('input', '.capacity', function() {
+
+    $('.distance').text(0);
+    arrayPoint[0].bidon = $('.reserve').val();
+    $('.currentPoint').text(arrayPoint[0].name);
+    $('.currentBidon').text(arrayPoint[0].bidon);
+    $('.bidonT').text(0);
+    $('.reservoir').text('Plein');
 
     refreshLine();
 });
