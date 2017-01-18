@@ -1,6 +1,7 @@
 .bloc
 {
     padding: 40px;
+    padding-bottom: 10px;
     border-radius: 3px;
     border: 1px grey solid;
     background: white;

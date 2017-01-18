@@ -42,6 +42,26 @@ function refreshLine()
     }
 }
 
+function resetPoint()
+{
+    for (var i = 0; i < arrayPoint.length; i++)
+    {
+        if(arrayPoint[i].name == 'Réserve') {
+            arrayPoint[i] = {
+                name: arrayPoint[i].name,
+                bidon: parseInt($('.reserve').val()) // Pour le point réserve on lui attribue le nombre de bidon rentré par l'utilisateur
+            };
+        }
+        else
+        {
+            arrayPoint[i] = {
+                name: arrayPoint[i].name,
+                bidon: 0
+            };
+        }
+    }
+}
+
 // On l'utilise une première fois pour avoir l'affichage de base
 refreshLine();
 
@@ -124,6 +144,8 @@ $(document).on('click', '.use', function() {
 // Evenement correspondant à changer le nombre de bidon à la réserve
 $(document).on('input', '.reserve', function() {
 
+    resetPoint();
+
     $('.distance').text(0); // On remet toutes les valeurs à 0
     arrayPoint[0].bidon = $(this).val(); // On assigne au point 'Réserve' le nouveau nombre de bidon
     $('.currentPoint').text(arrayPoint[0].name);
@@ -137,8 +159,24 @@ $(document).on('input', '.reserve', function() {
 // Evenement correspondant à changer le nombre de bidon transportable
 $(document).on('input', '.capacity', function() {
 
+    resetPoint();
+
     $('.distance').text(0); // On remet toutes les valeurs à 0
     arrayPoint[0].bidon = $('.reserve').val();
+    $('.currentPoint').text(arrayPoint[0].name);
+    $('.currentBidon').text(arrayPoint[0].bidon);
+    $('.bidonT').text(0);
+    $('.reservoir').text('Plein');
+
+    refreshLine();
+});
+
+// Evenement correspondant à réinitialiser l'app
+$(document).on('click', '.reset', function() {
+
+    resetPoint();
+
+    $('.distance').text(0); // On remet toutes les valeurs à 0
     $('.currentPoint').text(arrayPoint[0].name);
     $('.currentBidon').text(arrayPoint[0].bidon);
     $('.bidonT').text(0);
