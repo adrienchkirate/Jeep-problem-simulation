@@ -42,6 +42,7 @@ function refreshLine()
     }
 }
 
+// Fonction qui permet de réinitialiser l'application
 function resetPoint()
 {
     for (var i = 0; i < arrayPoint.length; i++)
@@ -62,6 +63,16 @@ function resetPoint()
     }
 }
 
+// Fonction qui permet de lancer l'observation par la console d'un nouveau voyage
+function newLog()
+{
+
+    var voyage = parseInt($('.numberConsole').last().text()) + 1;
+
+    $('.blocLog').append('<span class="label label-warning"><span class="numberConsole">' + voyage + '</span>eme Voyage : </span> <br /><br />');
+    $('.blocLog').append('<div class="log"></div>');
+}
+
 // On l'utilise une première fois pour avoir l'affichage de base
 refreshLine();
 
@@ -76,6 +87,8 @@ $(document).on('click', '.forward', function() {
         $('.currentPoint').text(arrayPoint[distance + 1].name);
         $('.reservoir').text('Vide');
         $('.distance').text(distance + 1); // On rajoute une unité de distance
+
+        $('.log:last-of-type').append('<p> - Point ' + arrayPoint[distance].name + ' vers ' + arrayPoint[distance + 1].name + '</p>');
     }
 
     refreshLine(); // On actualise la position visuel de la jeep
@@ -92,6 +105,8 @@ $(document).on('click', '.backward', function() {
         $('.reservoir').text('Vide');
         $('.currentPoint').text(arrayPoint[distance - 1].name);
         $('.distance').text(distance - 1); // On enlève une unité de distance
+
+        $('.log:last-of-type').append('<p> - Point ' + arrayPoint[distance].name + ' vers ' + arrayPoint[distance - 1].name + '</p>');
     }
 
     refreshLine(); // On actualise la position visuel de la jeep
@@ -107,6 +122,8 @@ $(document).on('click', '.take', function() {
         $('.bidonT').text(bidonT + 1); // On rajoute un bidon au coffre
         arrayPoint[distance].bidon -= 1; // On enlève un bidon au point correspondant
         $('.currentBidon').text(arrayPoint[distance].bidon); // Et on actualise
+
+        $('.log:last-of-type').append('<p> - Prise d\'un bidon au point ' + arrayPoint[distance].name);
     }
 
     refreshLine(); // On actualise la position visuel de la jeep
@@ -122,6 +139,9 @@ $(document).on('click', '.drop', function() {
         arrayPoint[distance].bidon += 1; // On ajoute un bidon au point actuel
         $('.bidonT').text(bidonT - 1); // On enlève le bidon du coffre
         $('.currentBidon').text(arrayPoint[distance].bidon); // On affiche le nouveau nombre de bidon
+
+
+        $('.log:last-of-type').append('<p> - Pose d\'un bidon au point ' + arrayPoint[distance].name);
     }
 
     refreshLine(); // On actualise la position visuel de la jeep
@@ -144,7 +164,13 @@ $(document).on('click', '.use', function() {
 // Evenement correspondant à changer le nombre de bidon à la réserve
 $(document).on('input', '.reserve', function() {
 
+    var distance = parseInt($('.distance').text());
+
     resetPoint();
+
+    $('.blocLog').empty();
+    $('.blocLog').append('<span class="label label-warning"><span class="numberConsole">1</span>er Voyage : </span> <br /><br />');
+    $('.blocLog').append('<div class="log"></div>');
 
     $('.distance').text(0); // On remet toutes les valeurs à 0
     arrayPoint[0].bidon = $(this).val(); // On assigne au point 'Réserve' le nouveau nombre de bidon
@@ -159,7 +185,13 @@ $(document).on('input', '.reserve', function() {
 // Evenement correspondant à changer le nombre de bidon transportable
 $(document).on('input', '.capacity', function() {
 
+    var distance = parseInt($('.distance').text());
+
     resetPoint();
+
+    $('.blocLog').empty();
+    $('.blocLog').append('<span class="label label-warning"><span class="numberConsole">1</span>er Voyage : </span> <br /><br />');
+    $('.blocLog').append('<div class="log"></div>');
 
     $('.distance').text(0); // On remet toutes les valeurs à 0
     arrayPoint[0].bidon = $('.reserve').val();
@@ -182,5 +214,6 @@ $(document).on('click', '.reset', function() {
     $('.bidonT').text(0);
     $('.reservoir').text('Plein');
 
+    newLog();
     refreshLine();
 });

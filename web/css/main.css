@@ -11,6 +11,33 @@
     font-size: 1.5em;
 
 }
+.blocLog
+{
+    border-top: none;
+    padding-top: 20px;
+}
+.blocLog p
+{
+    margin: 0;
+    font-size: 1.1em;
+}
+.blocLog span
+{
+    font-size: 1.3em;
+}
+.log
+{
+    width: 400px;
+    height: 300px;
+    border-radius: 3px;
+    max-height: 300px;
+    overflow: scroll;
+    background: #abafb2;
+    color: #fff;
+    padding: 20px;
+    font-family: "Courier New";
+    margin-bottom: 15px;
+}
 .label-success
 {
     cursor: pointer;
