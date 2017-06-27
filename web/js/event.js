@@ -217,3 +217,34 @@ $(document).on('click', '.reset', function() {
     newLog();
     refreshLine();
 });
+
+// Evenement correspondant à calculer la distance atteignable
+$(document).on('click', '.calcul', function() {
+
+    var br = parseInt($('.reserve').val()), bv = parseInt($('.capacity').val());
+
+    L = Math.pow(bv, 2) + bv-1;
+    z = L - br;
+    y = 2*bv; 
+    w = br - L;
+    
+    if(w > 2*bv)
+    {
+      $('.resultCalc').empty().append('<p class="alert alert-info">La calculette ne peux pas fournir de résultat optimal pour ces paramètres.</p>');
+    }
+    else if(L > br)
+    {
+        $('.resultCalc').empty().append('<p class="alert alert-info">Il manque ' + z + ' bidons pour aller au point ' + arrayPoint[y].name + '</p>');
+    }
+    else if (L == br)
+    {
+        $('.resultCalc').empty().append('<p class="alert alert-info">Distance maximal atteignable : ' + arrayPoint[y].name + '</p>');
+    }
+    else if (L < br)
+    {
+        $('.resultCalc').empty().append('<p class="alert alert-info">Il y aura une perte de ' + w + ' bidons '  + ' et le point atteint sera ' + arrayPoint[y].name + '</p>');
+    }
+});
+
+
+
