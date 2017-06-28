@@ -1,6 +1,7 @@
+
 .bloc
 {
-    padding: 40px;
+    padding: 30px;
     padding-bottom: 10px;
     border-radius: 3px;
     border: 1px grey solid;
@@ -8,7 +9,7 @@
 }
 .ligne
 {
-    font-size: 1.5em;
+    font-size: 1.3em;
 
 }
 .blocLog
