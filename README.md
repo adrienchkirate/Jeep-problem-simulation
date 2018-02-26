@@ -2,14 +2,14 @@
 
 Cette application a été créée dans le cadre d'un projet scolaire. Il s'agit d'une simulation interactive du problème d'optimisation de la jeep. Vous pouvez en apprendre plus sur ce problème [ici](http://www.xlim.fr/) (page en anglais).
 
-Pour comprendre l'utilisation de l'application je vous invite à lire l'article que mon groupe et moi avons rédigé sur ce problème disponible [ici](http://adrienchkirate.com/jeep/article.pdf).
+Pour comprendre l'utilisation de l'application je vous invite à lire l'article que mon groupe et moi avons rédigé sur ce problème disponible [ici](http://adrienchkirate.com/app/jeep/article.pdf).
 
 L'application permet donc de simuler le trajet d'une jeep traversant plusieurs points relais. Les conditions initiales du problème sont réglables et une console enregistre chaque action réalisée dans l'application.
 Elle intégre également un calcul optimal de la distance atteignable expliqué dans l'article cité plus haut.
 
-![Image de l'application](http://adrienchkirate.com/jeep/img/capture.png)
+![Image de l'application](http://adrienchkirate.com/app/jeep/img/capture.png)
 
-**[Essayer l'application.](http://adrienchkirate.com/jeep/)**
+**[Essayer l'application.](http://adrienchkirate.com/app/jeep/)**
 
 -----------------
 
