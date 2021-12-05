@@ -28,5 +28,3 @@ Composer peut être utilisé pour télécharger toutes les dépendances via le f
   php ../composer.phar update
 ```
 
-Mes autres projets sont disponible sur [mon site](http://adrienchkirate.com/).
-
