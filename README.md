@@ -4,6 +4,8 @@ This app simulates the jeep problem. The jeep problem is a mathematical problem 
 
 This application allows the simulation of a jeep's journey through several relay points. The initial conditions of the problem are adjustable and a console records each action carried out in the application. It also integrates an optimal calculation of the maximum attainable distance. 
 
+**[Try this app](http://adrienchkirate.com/app/jeep/)**
+
 ![Image de l'application](http://adrienchkirate.com/app/jeep/img/capture.png)
 
-**[Try this app](http://adrienchkirate.com/app/jeep/)**
+
