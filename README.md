@@ -7,6 +7,6 @@ This application allows the simulation of a jeep's journey through several relay
 **[Try this app here](http://adrienchkirate.com/app/jeep/)**
 
 
-![Image de l'application](http://adrienchkirate.com/app/jeep/img/capture.png)
+![Screenshot of this app](http://adrienchkirate.com/app/jeep/img/jeep_app.png))
 
 
